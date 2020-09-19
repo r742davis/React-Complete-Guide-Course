@@ -1,19 +1,27 @@
-import React from 'react';
+import React from "react";
 import classes from "./BuildControls.css";
-import BuildControl from './BuildControl/BuildControl';
+import BuildControl from "./BuildControl/BuildControl";
 
 const controls = [
-  { label: 'Salad', type: 'salad'},
-  { label: 'Bacon', type: 'bacon'},
-  { label: 'Cheese', type: 'cheese'},
-  { label: 'Meat', type: 'meat'},
-]
+  { label: "Salad", type: "salad" },
+  { label: "Bacon", type: "bacon" },
+  { label: "Cheese", type: "cheese" },
+  { label: "Meat", type: "meat" },
+];
 
-const buildControls = (props) => (
+const buildControls = ({ ingredientAdded, ingredientRemoved, disabled, price, purchasable, ordered }) => (
   <div className={classes.BuildControls}>
-    {controls.map(ctrl => (
-      <BuildControl key={ctrl.label} label={ctrl.label}/>
+    <p>Current Price: <strong>${price.toFixed(2)}</strong></p>
+    {controls.map((control) => (
+      <BuildControl
+        key={control.label}
+        label={control.label}
+        added={() => ingredientAdded(control.type)}
+        removed={()=> ingredientRemoved(control.type)}
+        disabled={disabled[control.type]}
+      />
     ))}
+    <button className={classes.OrderButton} disabled={!purchasable} onClick={ordered}>ORDER NOW</button>
   </div>
 );
 
