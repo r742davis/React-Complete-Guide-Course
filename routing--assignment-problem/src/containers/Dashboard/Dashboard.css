@@ -1,0 +1,11 @@
+.Navigation ul {
+  list-style: none;
+}
+
+.Navigation li {
+  margin: 20px;
+}
+
+.Navigation li a {
+  text-decoration: none;
+}
