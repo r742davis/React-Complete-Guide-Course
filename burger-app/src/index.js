@@ -7,13 +7,15 @@ import { BrowserRouter } from "react-router-dom";
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
+import authReducer from "./store/reducers/auth";
 import burgerBuilderReducer from "./store/reducers/burgerBuilder";
 import orderReducer from "./store/reducers/order";
 
 const rootReducer = combineReducers({
+  auth: authReducer,
   burgerBuilder: burgerBuilderReducer,
-  order: orderReducer
-})
+  order: orderReducer,
+});
 
 const middleware = [thunk];
 
