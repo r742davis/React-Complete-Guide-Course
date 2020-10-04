@@ -5,7 +5,7 @@ import NavigationItems from "../NavigationItems/NavigationItems";
 import Backdrop from "../../UI/Backdrop/Backdrop";
 import Aux from "../../../hoc/Aux/Aux";
 
-const sideDrawer = ({ open, closed }) => {
+const sideDrawer = ({ open, closed, isAuthenticated }) => {
   //Conditional Animations
   let attachedClasses = [classes.SideDrawer, classes.Close];
   if (open) {
@@ -19,7 +19,7 @@ const sideDrawer = ({ open, closed }) => {
           <Logo />
         </div>
         <nav>
-          <NavigationItems />
+          <NavigationItems isAuthenticated={isAuthenticated}/>
         </nav>
       </div>
     </Aux>
