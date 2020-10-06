@@ -21,15 +21,23 @@ const withErrorHandler = (WrapperComponent, axios) => {
       );
     }
 
+    componentDidMount() {
+      this.requestInterceptor = axios.interceptors.request.use((req) => {
+        this.setState({ error: null });
+        return req;
+      });
+      this.responseInterceptor = axios.interceptors.response.use(
+        (res) => res,
+        (error) => {
+          this.setState({ error: error });
+        }
+      );
+    }
+
     componentWillUnmount() {
       //Prevents memory leaks (running code that's unneeded) by
       //preventing old interceptors from living on when this 
       //component is reused
-      console.log(
-        "Will Unmount",
-        this.requestInterceptor,
-        this.responseInterceptor
-      );
       axios.interceptors.request.eject(this.requestInterceptor);
       axios.interceptors.request.eject(this.responseInterceptor);
     }

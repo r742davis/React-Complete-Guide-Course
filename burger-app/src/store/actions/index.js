@@ -9,9 +9,4 @@ export {
   purchaseInit,
   fetchOrders,
 } from "./order";
-export {
-  authStart,
-  authSuccess,
-  authFail,
-  auth
-} from "./auth";
+export { auth, logout, setAuthRedirectPath, authCheckState } from "./auth";
